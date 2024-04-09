@@ -95,13 +95,14 @@ def train_model(trainloader, valloader, testloader):
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
-    loss_values = []
-    best_val_loss = float("inf")
-    prev_val_loss = float("inf")
-    patience = 5
-    wait = 0
-
     with Progress() as progress:
+        save_count = 0
+        loss_values = []
+        best_val_loss = float("inf")
+        prev_val_loss = float("inf")
+        patience = 5
+        wait = 0
+
         training_progress = len(trainloader) * epoch_limit
         validation_progress = len(valloader) * epoch_limit
         analysis_progress = len(testloader) * epoch_limit
@@ -112,7 +113,7 @@ def train_model(trainloader, valloader, testloader):
         )
         analysis = progress.add_task("[blue]Analysis...", total=analysis_progress)
 
-        for epoch in range(epoch_limit):
+        for _ in range(epoch_limit):
             net.train()
             running_loss = 0.0
             for i, data in enumerate(trainloader, 0):
