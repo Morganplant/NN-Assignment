@@ -1,0 +1,6 @@
+pytorch
+torch
+sklearn
+numpy
+rich
+torchvision
