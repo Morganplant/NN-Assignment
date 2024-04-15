@@ -1,6 +1,6 @@
 pytorch
 torch
-sklearn
+scikit-learn
 numpy
 rich
 torchvision
